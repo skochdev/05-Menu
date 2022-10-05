@@ -6,12 +6,7 @@ import Menu from './components/Menu/Menu';
 
 function App() {
   return (
-    <Box
-      as="main"
-      height="100vh"
-      display="flex"
-      justifyContent="center"
-      alignItems="center">
+    <Box as="main">
       <GlobalStyle />
       <Box as="section">
         <Menu data={data} />

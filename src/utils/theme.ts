@@ -1,7 +1,7 @@
 import { DefaultTheme } from 'styled-components';
 
 export const theme: DefaultTheme = {
-  borders: ['0', '2px solid', '4px solid', '100vw solid'],
+  borders: ['none', '2px solid', '4px solid', '100vw solid'],
   radii: {
     none: '0',
     normal: '0.25rem',
@@ -9,6 +9,7 @@ export const theme: DefaultTheme = {
   },
   colors: {
     black: '#000',
+    golden: '#c59d5f',
     white: '#fff',
     text: '#2a2a2a',
     background: '#f5f3f3',
@@ -16,13 +17,15 @@ export const theme: DefaultTheme = {
     secondary: '#05a',
     accent: '#fda031',
     muted: '#b2b2b2',
+    grey: '#617d98',
+    transparent: 'transparent',
   },
   fontSizes: {
-    xs: '12px',
-    s: '14px',
-    m: '16px',
-    l: '32px',
-    xl: '64px',
+    xs: '0.8rem',
+    s: '1rem',
+    m: '1.5rem',
+    l: '2rem',
+    xl: '3rem',
   },
   fontWeights: [400, 500, 700, 900],
   lineHeights: {

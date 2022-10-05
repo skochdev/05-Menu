@@ -2,18 +2,22 @@ import * as S from './Categories.styled';
 
 interface Props {
   categories: string[];
+  handleFilter: (category: string) => void;
 }
 
-const Categories = ({ categories }: Props) => {
+const Categories = ({ categories, handleFilter }: Props) => {
+  const onCategoryClick = (category: string) => {
+    handleFilter(category);
+  };
+
   return (
     <S.Categories>
-      <li>
-        <button type="button">All</button>
-      </li>
       {categories.map(category => {
         return (
           <li key={category}>
-            <button type="button">{category}</button>
+            <button type="button" onClick={() => onCategoryClick(category)}>
+              {category}
+            </button>
           </li>
         );
       })}

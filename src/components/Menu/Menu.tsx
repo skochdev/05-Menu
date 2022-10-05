@@ -1,6 +1,7 @@
 import Categories from '../Categories/Categories';
 import { Box } from '../../utils/Box';
 import * as S from './Menu.styled';
+import { useState } from 'react';
 
 interface Props {
   data: {
@@ -14,24 +15,48 @@ interface Props {
 }
 
 const Menu = ({ data }: Props) => {
-  const uniqueCategories = data
-    .map(listing => listing.category)
-    .filter((c, index, array) => array.indexOf(c) === index);
+  const categories = data.map(listing => listing.category);
+  const uniqueCategoriesForButtons = ['all', ...new Set(categories)];
+  const [filter, setFilter] = useState('all');
+
+  //
+  const filteredDishes =
+    filter === 'all'
+      ? data
+      : data.filter(listing => listing.category === filter);
+
+  const handleFilter = (category: string) => {
+    setFilter(category);
+  };
 
   return (
-    <div>
+    <Box py={4}>
       <Box as="h1" textAlign="center" mb="5">
         Our Menu
       </Box>
-      <Categories categories={uniqueCategories} />
+      <Categories
+        categories={uniqueCategoriesForButtons}
+        handleFilter={handleFilter}
+      />
       <S.Menu>
-        {data.map(({ id, title, category, price, img, desc }) => (
+        {filteredDishes.map(({ id, title, price, img, desc }) => (
           <li key={id}>
-            <img src={img} alt={title} />
+            <article>
+              <div className="image-wrapper">
+                <img src={require(`../../${img}`)} alt={title} />
+              </div>
+              <div className="details">
+                <div className="title-with-price">
+                  <h1 className="title">{title}</h1>
+                  <b className="price">{price}</b>
+                </div>
+                <p>{desc}</p>
+              </div>
+            </article>
           </li>
         ))}
       </S.Menu>
-    </div>
+    </Box>
   );
 };
 
